@@ -16,8 +16,7 @@ class _PokemonListState extends State<PokemonList> {
   final PokemonRepo pokemonRepo = PokemonRepo();
 
   void showPokemonDetail(Result result) {
-    Navigator.pushReplacementNamed(context, '/details',
-        arguments: result);
+    Navigator.pushReplacementNamed(context, '/details', arguments: result);
   }
 
   @override
@@ -47,6 +46,24 @@ class _PokemonListState extends State<PokemonList> {
     });
   }
 
+  Widget searchBar() {
+    return TextField(
+      onChanged: searchPokemon,
+      decoration: InputDecoration(
+        labelText: 'Search Pokemon',
+        prefixIcon: const Icon(Icons.search),
+        focusedBorder: OutlineInputBorder(
+          borderSide: const BorderSide(color: Colors.blue, width: 2.0),
+          borderRadius: BorderRadius.circular(10.0),
+        ),
+        enabledBorder: OutlineInputBorder(
+          borderSide: const BorderSide(color: Colors.black, width: 1.0),
+          borderRadius: BorderRadius.circular(10.0),
+        ),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -61,21 +78,7 @@ class _PokemonListState extends State<PokemonList> {
         children: [
           Padding(
             padding: const EdgeInsets.all(16.0),
-            child: TextField(
-              onChanged: searchPokemon,
-              decoration: InputDecoration(
-                labelText: 'Search Pokemon',
-                prefixIcon: const Icon(Icons.search),
-                focusedBorder: OutlineInputBorder(
-                  borderSide: const BorderSide(color: Colors.blue, width: 2.0),
-                  borderRadius: BorderRadius.circular(10.0),
-                ),
-                enabledBorder: OutlineInputBorder(
-                  borderSide: const BorderSide(color: Colors.black, width: 1.0),
-                  borderRadius: BorderRadius.circular(10.0),
-                ),
-              ),
-            ),
+            child: searchBar(),
           ),
           Expanded(
             child: ListView.builder(

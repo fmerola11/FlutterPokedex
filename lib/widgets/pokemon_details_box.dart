@@ -1,14 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:pokedex/models/pokemon_detail.dart';
 import '../utils/spaces.dart';
+import 'package:pokedex/utils/String+.dart';
 
 class PokemonDetailsBox extends StatelessWidget {
-  final Map<String, String> row1Map = {'Height': '0,7 m', 'Category': 'Seed'};
-  final Map<String, String> row2Map = {
-    'Weight': '6,9 kg',
-    'Ability': 'Overgrow'
-  };
+  final PokemonDetail pokemonDetail;
 
-  PokemonDetailsBox({super.key});
+  const PokemonDetailsBox({super.key, required this.pokemonDetail});
 
   Widget boxColumn(title, value, CrossAxisAlignment crossAlignment,
       MainAxisAlignment mainAlignment) {
@@ -34,15 +32,35 @@ class PokemonDetailsBox extends StatelessWidget {
       children: [
         boxColumn(map.keys.elementAt(0), map.values.elementAt(0),
             CrossAxisAlignment.start, MainAxisAlignment.start),
-        boxColumn(map.keys.elementAt(1), map.values.elementAt(1),
-            CrossAxisAlignment.end, MainAxisAlignment.end)
+        if (map.length > 1)
+          boxColumn(map.keys.elementAt(1), map.values.elementAt(1),
+              CrossAxisAlignment.end, MainAxisAlignment.end)
       ],
     );
   }
 
+  Map<String, String> createRow1Map() {
+    final Map<String, String> map = {
+      'Height': '${pokemonDetail.height! / 10} m',
+      'Weight': '${pokemonDetail.weight! / 10} kg',
+    };
+    return map;
+  }
+
+  Map<String, String> createRow2Map() {
+    final Map<String, String> map = {
+      'Ability': pokemonDetail.abilities?.first.ability?.name?.capitalized() ??
+          "No ability"
+    };
+    return map;
+  }
+
   @override
   Widget build(BuildContext context) {
-    final List<Map<String, String>> array = [row1Map, row2Map];
+    final List<Map<String, String>> mapArray = [
+      createRow1Map(),
+      createRow2Map()
+    ];
     return Container(
       margin: const EdgeInsets.all(16.0),
       decoration: BoxDecoration(
@@ -53,9 +71,9 @@ class PokemonDetailsBox extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            for (var item in array) ...{
+            for (var item in mapArray) ...{
               boxRow(item),
-              if (item != array.last) verticalSpacing(20.0)
+              if (item != mapArray.last) verticalSpacing(20.0)
             }
           ],
         ),
