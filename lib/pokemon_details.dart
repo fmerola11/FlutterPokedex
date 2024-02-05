@@ -23,9 +23,9 @@ class PokemonDetails extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Text(
-            'Type',
-            style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
+          Text(
+            types.length == 1 ? 'Type' : 'Types',
+            style: const TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
           ),
           verticalSpacing(12.0),
           Wrap(
