@@ -1,16 +1,13 @@
-# pokedex
+# FlutterPokedex
+FlutterPokedex is a simple Flutter app that allows users to browse and search for information about different Pokemon. It presents a user-friendly interface, realized with Dart.
 
-A new Flutter project.
+## Features
+- Show a list of Pokemon with their name.
+- Search for a Pokemon by its name.
+- Tap on a Pokemon to view detailed information, including an artwork.
 
-## Getting Started
+## Acknowledgements
+- Pokemon data used in this app is obtained from the PokeAPI (https://pokeapi.co/).
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## License
+This project is licensed under the Apache-2.0 License - see the LICENSE.md file for details.
